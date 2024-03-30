@@ -39,18 +39,18 @@ func main() {
 	for i := 0; i < 4; i++ {
 		// initail T 계산
 		var T_init = x_acetones[i]*ACETONE_T_SAT + x_isos[i]*ISO_PROPANOL_T_SAT
-		var P_sat_acetonne, P_sat_iso, gamma_acetonne, gamma_iso, A, T_fin float64 = 0, 0, 0, 0, 0, 0
-		var delT = 0.01
+		var P_sat_acetonne, P_sat_iso, gamma_acetonne, gamma_iso, A float64 = 0, 0, 0, 0, 0
+		var delT = 1.0
 		var T = T_init
 		// P값 수렴시키기.
-		for delT <= 0.1 {
+		for delT > 0.1 {
 			A = 2.771 - 0.00523*T
 			gamma_acetonne, gamma_iso = getGamma(A, i)
-			fmt.Printf("%f, %f\n", T_fin, T_init)
 			P_sat_acetonne, P_sat_iso = getPsat1(T)
 			new_Psat_acetone := getNewPsat(P_sat_acetonne, P_sat_iso, gamma_acetonne, gamma_iso, x_acetones[i], x_isos[i])
+			delT = math.Abs(T - getNewT(new_Psat_acetone))
 			T = getNewT(new_Psat_acetone)
-			delT = math.Abs(T_init - T)
+
 		}
 		//계산 결과 출력
 		fmt.Printf("Sampe %d 결과\n", i+1)
