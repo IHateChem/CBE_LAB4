@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 var ACETONE_T_SAT = ACETONE_B/(ACETONE_A-math.Log10(P)) - ACETONE_C
@@ -30,7 +31,6 @@ func getNewT(P1 float64) float64 {
 	return ACETONE_B/(ACETONE_A-math.Log10(P1)) - ACETONE_C
 }
 func main() {
-	fmt.Println(T[0])
 	// experience_x_acetone에서 각 요소를 1에서 빼서 experience_x_iso에 추가
 	for _, value := range x_acetones {
 		x_isos = append(x_isos, 1-value)
@@ -52,13 +52,12 @@ func main() {
 			T = getNewT(new_Psat_acetone)
 
 		}
-		//계산 결과 출력
-		fmt.Printf("Sampe %d 결과\n", i+1)
+		sample := "Sample " + strconv.Itoa(i+1) + ": "
 		// 열 제목 출력
-		fmt.Printf("%10s%10s%10s%10s%10s%10s%10s%10s%10s\n", "P", "T", "x1", "y1", "P1_sat", "P2_sat", "gamma1", "gamma2", "A")
+		fmt.Printf("%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s%-12s\n", sample, "P(bar)", "T(K)", "x1", "y1", "P1_sat(bar)", "P2_sat(bar)", "γ_1", "γ_2", "A")
 
 		// 실험 결과 출력
-		fmt.Printf("%10.3f%10.3f%10.3f%10.3f%10.3f%10.3f%10.3f%10.3f%10.3f\n", P, T, x_acetones[i], x_isos[i], P_sat_acetonne, P_sat_acetonne, gamma_acetonne, gamma_iso, A)
+		fmt.Printf("%-12s%-12.3f%-12.3f%-12.3f%-12.3f%-12.3f%-12.3f%-12.3f%-12.3f%-12.3f\n", "", P, T, x_acetones[i], gamma_acetonne*x_acetones[i]*P_sat_acetonne, P_sat_acetonne, P_sat_acetonne, gamma_acetonne, gamma_iso, A)
 
 	}
 
