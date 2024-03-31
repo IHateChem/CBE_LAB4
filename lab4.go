@@ -7,7 +7,7 @@ import (
 
 var ACETONE_T_SAT = ACETONE_B/(ACETONE_A-math.Log10(P)) - ACETONE_C
 var ISO_PROPANOL_T_SAT = ISO_PROPANOL_B/(ISO_PROPANOL_A-math.Log10(P)) - ISO_PROPANOL_C
-var x_acetones = []float64{0.1, 0.2, 0.3, 0.4} // todo 적절한값 넣기
+var x_acetones = []float64{0.092027467, 0.150737506, 0.233719893, 0.340767172}
 var x_isos []float64
 
 // gamma_acetonne, gamma_iso구하기
