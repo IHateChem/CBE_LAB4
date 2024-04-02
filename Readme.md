@@ -22,7 +22,7 @@ $ ./lab4
 ```
 1. Calibration Curve를 통해 계산된 Acetone, IsoPropanol의 액상 몰분율을 비롯해 계산에 필요한 값들을 기입. 
 2. Antoines' Eq.를 통해 T1_sat, T2_sat계산
-3. Raoult's laq를 통해 initail T계산
+3. Raoult's law를 통해 initail T계산
 4. while 직전계산한 T값과의 차이가 0.1이상
     a.  2.771 - 0.00523*T을 통해 A값 계산
     b. Initial Saturation Pressure를 계산. 
